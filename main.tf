@@ -34,17 +34,17 @@ resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
     "Version" = "2012-10-17"
     "Statement" : [
       {
-        "Sid" : "LakeFormation",
-        "Effect" : "Allow",
+        "Sid": "LakeFormation",
+        "Effect": "Allow",
         "Action": [
           "lakeformation:GetDataAccess",
           "lakeformation:GetPermissions"
         ],
-        "Resources" : "*"
+        "Resources": "*"
       }
     ]
   }
-  EOF 
+  EOF
 }
 
 resource "aws_iam_role_policy_attachment" "AWSGlueServiceRoleAttach" {
