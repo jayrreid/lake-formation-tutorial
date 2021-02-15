@@ -4,20 +4,24 @@ provider "aws" {
   region  = var.region
 }
 
-resource "aws_iam_role" "DataLakeWorkflowRole"
-{
+data "aws_iam_role" "DataLakeWorkflowRole" {
   name ="DataLakeWorkflowRole"
+}
 
-  assume_role_policy = jsonencode({
+resource "aws_iam_role" "DataLakeWorkflowRolePolicy" {
+  name ="DataLakeWorkflowRolePolicy"
+  role = aws_iam_roile.DataLakeWorkflowRole.id
+
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
         Sid : "LakeFormation"
         Effect = "Allow"
         Action = ["lakeformation:GetDataAccess","lakeformation:GetPermissions"]
-      }
-      resources = ["*"]
-    ]
+        resources = ["*"]
+      },
+      ]
     })
 }
 
