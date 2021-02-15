@@ -44,6 +44,7 @@ resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
       }
     ]
   }
+  EOF 
 }
 
 resource "aws_iam_role_policy_attachment" "AWSGlueServiceRoleAttach" {
