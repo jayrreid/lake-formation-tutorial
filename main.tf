@@ -31,8 +31,8 @@ resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
 
   policy = <<EOF
   {
-    "Version" = "2012-10-17"
-    "Statement" : [
+    "Version": "2012-10-17",
+    "Statement": [
       {
         "Sid": "LakeFormation",
         "Effect": "Allow",
