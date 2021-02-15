@@ -4,6 +4,8 @@ provider "aws" {
   region  = var.region
 }
 
+data "aws_caller_identity" "current" {}
+
 resource "aws_iam_role" "DataLakeWorkflowRole" {
   name ="DataLakeWorkflowRole"
 
@@ -44,4 +46,30 @@ resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
     ]
   })
 }
- 
+
+
+resource "aws_iam_role_policy" "DataLakeWorkflow" {
+  name ="DataLakeWorkflow"
+  role = aws_iam_role.DataLakeWorkflowRole.id
+
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "LakeFormation",
+        "Effect": "Allow",
+        "Action": [
+          "lakeformation:GetDataAccess",
+          "lakeformation:GetPermissions"
+        ],
+        "Resource": "*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": ["iam:PassRole"],
+        "Resource": [
+        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/DataLakeWorkflowRole"
+      }
+    ]
+  })
+}
