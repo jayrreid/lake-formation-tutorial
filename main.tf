@@ -69,6 +69,7 @@ resource "aws_iam_role_policy" "DataLakeWorkflow" {
         "Action": ["iam:PassRole"],
         "Resource": [
         "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/DataLakeWorkflowRole"
+        ]
       }
     ]
   })
