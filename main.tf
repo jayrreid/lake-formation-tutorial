@@ -39,7 +39,7 @@ resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
           "lakeformation:GetDataAccess",
           "lakeformation:GetPermissions"
         ],
-        "Resources": "*"
+        "Resource": "*"
       }
     ]
   })
