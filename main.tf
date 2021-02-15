@@ -8,7 +8,7 @@ data "aws_iam_role" "DataLakeWorkflowRole" {
   name ="DataLakeWorkflowRole"
 }
 
-resource "aws_iam_role" "DataLakeWorkflowRolePolicy" {
+resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
   name ="DataLakeWorkflowRolePolicy"
   role = aws_iam_roile.DataLakeWorkflowRole.id
 
@@ -21,8 +21,8 @@ resource "aws_iam_role" "DataLakeWorkflowRolePolicy" {
         Action = ["lakeformation:GetDataAccess","lakeformation:GetPermissions"]
         resources = ["*"]
       },
-      ]
-    })
+    ]
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "AWSGlueServiceRoleAttach" {
