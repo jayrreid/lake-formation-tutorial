@@ -10,7 +10,7 @@ data "aws_iam_role" "DataLakeWorkflowRole" {
 
 resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
   name ="DataLakeWorkflowRolePolicy"
-  role = aws_iam_roile.DataLakeWorkflowRole.id
+  role = aws_iam_role.DataLakeWorkflowRole.id
 
   policy = jsonencode({
     Version = "2012-10-17"
