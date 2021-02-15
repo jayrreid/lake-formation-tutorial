@@ -29,17 +29,21 @@ resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
   name ="DataLakeWorkflowRolePolicy"
   role = aws_iam_role.DataLakeWorkflowRole.id
 
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
+  policy = <<EOF
+  {
+    "Version" = "2012-10-17"
+    "Statement" : [
       {
-        Sid : "LakeFormation"
-        Effect = "Allow"
-        Action = ["lakeformation:GetDataAccess","lakeformation:GetPermissions"]
-        resources = ["*"]
-      },
+        "Sid" : "LakeFormation",
+        "Effect" : "Allow",
+        "Action": [
+          "lakeformation:GetDataAccess",
+          "lakeformation:GetPermissions"
+        ],
+        "Resources" : "*"
+      }
     ]
-  })
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "AWSGlueServiceRoleAttach" {
