@@ -17,7 +17,7 @@ resource "aws_iam_role" "DataLakeWorkflowRole" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Service = "ec2.amazonaws.com"
+          Service = "glue.amazonaws.com"
         }
       },
     ]
