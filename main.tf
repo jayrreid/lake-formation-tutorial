@@ -29,8 +29,7 @@ resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
   name ="DataLakeWorkflowRolePolicy"
   role = aws_iam_role.DataLakeWorkflowRole.id
 
-  policy = <<EOF
-  {
+  policy = jsonencode({
     "Version": "2012-10-17",
     "Statement": [
       {
@@ -43,8 +42,7 @@ resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
         "Resources": "*"
       }
     ]
-  }
-  EOF
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "AWSGlueServiceRoleAttach" {
