@@ -44,8 +44,4 @@ resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
     ]
   })
 }
-
-resource "aws_iam_role_policy_attachment" "AWSGlueServiceRoleAttach" {
-  role = "DataLakeWorkflowRole"
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
-}
+ 
