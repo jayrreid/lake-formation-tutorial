@@ -102,6 +102,6 @@ resource "aws_iam_user_policy" "RAMAccess" {
     })
 }
 
-resource "aws_lakeformation_data_lake_settings" "admins" {
+resource "aws_lakeformation_data_lake_settings" "datalake_admins" {
   admins = [aws_iam_user.dl_admin.arn]
 }
