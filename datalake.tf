@@ -1,3 +1,25 @@
+
+#
+# Data Lake Admins, Create Database and Default Permissions
+#
+data "aws_iam_user" "administrator" {
+  arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/Administrator"
+}
+
+resource "aws_lakeformation_data_lake_settings" "datalake_admins" {
+  admins = [aws_iam_user.dl_admin.arn,aws_iam_user.administrator.arn]
+
+  create_database_default_permissions {
+    permissions = ["ALL"]
+    principal   = aws_iam_role.DataLakeWorkflowRole.arn
+  }
+
+  create_table_default_permissions {
+    permissions = ["ALL"]
+    principal   = aws_iam_role.DataLakeWorkflowRole.arn
+  }
+}
+
 #
 # Create S3 bucket
 #
@@ -29,8 +51,4 @@ resource "aws_lakeformation_permissions" "LF_Permission" {
   data_location {
     arn = aws_lakeformation_resource.LF_Resource.arn
   }
-}
-
-resource "aws_lakeformation_data_lake_settings" "datalake_admins" {
-  admins = [aws_iam_user.dl_admin.arn]
 }

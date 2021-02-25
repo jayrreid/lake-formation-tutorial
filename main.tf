@@ -62,8 +62,8 @@ resource "aws_iam_role_policy_attachment" "AWSGlueServiceRoleAttach" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
 }
 
-resource "aws_iam_role_policy" "DataLakeDataAccess" {
-  name ="DataLakeData"
+resource "aws_iam_role_policy" "DataAccessPolicyForS3" {
+  name ="DataAccessPolicyForS3"
   role = aws_iam_role.DataLakeWorkflowRole.id
 
   policy = jsonencode({

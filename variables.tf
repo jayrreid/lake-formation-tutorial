@@ -5,5 +5,5 @@ variable "region" {
 }
 
 variable "s3bucket_name" {
-  default = "jr-temp-bucket"
+  default = "lf-data-location-jr"
 }
