@@ -45,27 +45,6 @@ resource "aws_iam_role_policy" "DataLakeWorkflowRolePolicy" {
           "lakeformation:GetPermissions"
         ],
         "Resource": "*"
-      }
-    ]
-  })
-}
-
-
-resource "aws_iam_role_policy" "DataLakeWorkflow" {
-  name ="DataLakeWorkflow"
-  role = aws_iam_role.DataLakeWorkflowRole.id
-
-  policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Sid": "LakeFormation",
-        "Effect": "Allow",
-        "Action": [
-          "lakeformation:GetDataAccess",
-          "lakeformation:GetPermissions"
-        ],
-        "Resource": "*"
       },
       {
         "Effect": "Allow",
@@ -81,4 +60,20 @@ resource "aws_iam_role_policy" "DataLakeWorkflow" {
 resource "aws_iam_role_policy_attachment" "AWSGlueServiceRoleAttach" {
   role = aws_iam_role.DataLakeWorkflowRole.id
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
+}
+
+resource "aws_iam_role_policy" "DataLakeDataAccess" {
+  name ="DataLakeData"
+  role = aws_iam_role.DataLakeWorkflowRole.id
+
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": "s3:GetObject",
+        "Resource": ["arn:aws:s3:::${var.s3bucket_name}/*"]
+      }
+    ]
+  })
 }
