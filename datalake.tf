@@ -3,6 +3,7 @@
 # Data Lake Admins, Create Database and Default Permissions
 #
 data "aws_iam_user" "administrator" {
+  user_name = "Administrator"
   arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/Administrator"
 }
 
