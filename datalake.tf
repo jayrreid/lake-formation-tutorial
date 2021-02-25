@@ -2,10 +2,6 @@
 #
 # Data Lake Admins, Create Database and Default Permissions
 #
-data "aws_iam_user" "administrator" {
-  user_name = "Administrator"
-}
-
 resource "aws_lakeformation_data_lake_settings" "datalake_admins" {
   admins = [aws_iam_user.dl_admin.arn,aws_iam_user.administrator.arn]
 

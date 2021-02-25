@@ -6,6 +6,10 @@ provider "aws" {
 
 data "aws_caller_identity" "current" {}
 
+data "aws_iam_user" "administrator" {
+  user_name = "Administrator"
+}
+
 /*
  Create an IAM Role for Workflows
 */
