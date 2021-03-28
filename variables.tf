@@ -5,5 +5,5 @@ variable "region" {
 }
 
 variable "s3bucket_name" {
-  default = "lf-datalake-jr"
+  default = "lf-datalake-jr" 
 }
